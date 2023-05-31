@@ -19,7 +19,7 @@ api.post('/api/notes', (req, res) => {
       let newNote = {
         title: req.body.title,
         text: req.body.text,
-        note_id: uuid(),
+        id: uuid(),
       };
   
       readAndAppend(newNote, './db/db.json');
@@ -30,15 +30,20 @@ api.post('/api/notes', (req, res) => {
   });
 
 // DELETE route to remove notes
+const fs = require('fs');
+const db = require('../db/db.json')
 api.delete('/api/notes/:id', (req, res) => {
-    // grab the note from the JSON file
-    const notes = readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
-    // filter out the single note with matching id
-    const newNotes = notes.filter(note => note.id !== parseInt(req.params.id));
+    // filter the JSON file for the note with matching id, then return a new file without this note
+    const newNotes = db.filter((note) =>
+        note.id !== req.params.id)
 
-    readAndAppend(newNotes, './db/db.json');
-    res.json(`Note deleted successfully 🗑️`);
-});
+    // update the json file then return the updated string to the page
+    fs.writeFileSync('./db/db.json', JSON.stringify(newNotes))
+
+    res.json(newNotes);
+    console.log('Note deleted successfully 🗑️');
+})
+
   
 // export module
 module.exports = api;
