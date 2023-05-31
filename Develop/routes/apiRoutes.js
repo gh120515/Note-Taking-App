@@ -11,12 +11,12 @@ api.get('/api/notes', (req, res) => {
 
 // POST route for a new note
 api.post('/api/notes', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
   
-    const { title, text } = req.body;
+    // const { title, text } = req.body;
   
     if (req.body) {
-      const newNote = {
+      let newNote = {
         title: req.body.title,
         text: req.body.text,
         note_id: uuid(),
