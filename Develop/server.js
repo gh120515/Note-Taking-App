@@ -1,9 +1,9 @@
 const express = require('express');
-const path = require ('path');
+// const path = require ('path');
 
 // import modular routers for /api and /(html)
-const apiRoutes = require('./Develop/routes/apiRoutes');
-const htmlRoutes = require('./Develop/routes/htmlRoutes');
+const apiRoutes = require('./routes/apiRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 // use the application
 const app = express();
 
@@ -11,9 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // static & parse JSON body
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(express.json());
 
 // middleware routing
 app.use(apiRoutes);
