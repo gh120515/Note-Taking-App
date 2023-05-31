@@ -15,6 +15,8 @@ Express.js is used as a basis for back-end operations, which is used to save and
 
 ## Credits
 
+Starter code (front end) by University of Adelaide.
+
 ### Tutorials
 
 
