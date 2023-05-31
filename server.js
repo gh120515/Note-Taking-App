@@ -1,16 +1,22 @@
-// import packages
 const express = require('express');
+
+// import modular routers for /api and /(html)
+const apiRoutes = require('./Develop/routes/apiRoutes.js');
+// const htmlRoutes = require('./Develop/routes/htmlRoutes.js');
 // use the application
 const app = express();
 
 // create port (for app deployment to Heroku & local server)
 const PORT = process.env.PORT || 3001;
 
-// middleware to parse JSON body
+// parse JSON body
 app.use(express.json());
-
-// route to handle fetching all notes (in JSON)
-require('./Develop/routes/api-routes.js')(app);
+// static
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+// middleware routing
+app.use(apiRoutes);
+// app.use(htmlRoutes);
 
 // initialise server & display in console
 app.listen(PORT, () => {
