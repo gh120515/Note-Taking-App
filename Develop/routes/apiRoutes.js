@@ -6,7 +6,7 @@ const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 
 // GET route for retrieving all notes
 api.get('/api/notes', (req, res) => {
-    readFromFile('../db/db.json').then((data) => res.json(JSON.parse(data)));
+    readFromFile('./Develop/db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 // POST route for a new note
@@ -22,7 +22,7 @@ api.post('/api/notes', (req, res) => {
         note_id: uuid(),
       };
   
-      readAndAppend(newNote, './db/db.json');
+      readAndAppend(newNote, './Develop/db/db.json');
       res.json(`Note added successfully 📝`);
     } else {
       res.error('Error in adding note');
@@ -30,4 +30,4 @@ api.post('/api/notes', (req, res) => {
   });
   
 // export module
-  module.exports = api;
+module.exports = api;

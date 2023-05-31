@@ -1,8 +1,8 @@
 const express = require('express');
 
 // import modular routers for /api and /(html)
-const apiRoutes = require('./Develop/routes/apiRoutes.js');
-const htmlRoutes = require('./Develop/routes/htmlRoutes.js');
+const apiRoutes = require('./Develop/routes/apiRoutes');
+const htmlRoutes = require('./Develop/routes/htmlRoutes');
 // use the application
 const app = express();
 
