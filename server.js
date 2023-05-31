@@ -2,7 +2,7 @@ const express = require('express');
 
 // import modular routers for /api and /(html)
 const apiRoutes = require('./Develop/routes/apiRoutes.js');
-// const htmlRoutes = require('./Develop/routes/htmlRoutes.js');
+const htmlRoutes = require('./Develop/routes/htmlRoutes.js');
 // use the application
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 // middleware routing
 app.use(apiRoutes);
-// app.use(htmlRoutes);
+app.use(htmlRoutes);
 
 // initialise server & display in console
 app.listen(PORT, () => {
